@@ -38,7 +38,8 @@ Describe, in your own words, what the SLIs are, based on an SLO of *monthly upti
   - *request response time*: SLIs could be the average time taken to respond to a request.
 
 ## Creating SLI metrics.
-*TODO:* It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
+It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
+
 5 metrics to measure the SLIs:
 1. **Uptime**: The percentage of time the service is available over a period.
 2. **Latency**: The time taken to respond to a request.
