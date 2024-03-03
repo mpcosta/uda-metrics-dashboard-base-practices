@@ -1,4 +1,13 @@
-**Note:** For the screenshots, you can store all of your answer images in the `answer-img` directory.
+# Uda Metrics Dashboard Base Practices
+
+## Overview
+Welcome to the monitoring and visualization project utilizing Prometheus, Jaeger, and Grafana for observing a sample application deployed on a Kubernetes cluster. This repository hosts the necessary resources to set up comprehensive dashboards for monitoring and tracing, ensuring visibility into the application's performance and behavior.
+
+### Base Architecture
+![Architecture](answer-img/base-architecture.png)
+
+
+# Tasks Executed
 
 ## Verify the monitoring installation
 
