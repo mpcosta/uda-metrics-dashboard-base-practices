@@ -1,11 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-app
+  name: backend
   labels:
     app: backend
   annotations:
     sidecar.jaegertracing.io/inject: "true"
+    prometheus.io/scrape: "true"
+    prometheus.io/path: /metrics
+    prometheus.io/port: backend
 spec:
   replicas: 3
   selector:
@@ -29,7 +32,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-service
+  name: backend
+  labels:
+    app: backend
 spec:
   selector:
     app: backend
@@ -42,9 +47,15 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
+  annotations:
+    sidecar.jaegertracing.io/inject: "true"
+    prometheus.io/scrape: "true"
+    prometheus.io/path: /metrics
+    prometheus.io/port: backend
   name: backend
   namespace: monitoring
   labels:
+    name: backend
     app: backend
     release: prometheus
 spec:

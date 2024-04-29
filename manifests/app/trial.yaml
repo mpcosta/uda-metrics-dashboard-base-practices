@@ -1,11 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: trial-app
+  name: trial
   labels:
     app: trial
   annotations:
     sidecar.jaegertracing.io/inject: "true"
+    prometheus.io/scrape: "true"
+    prometheus.io/path: /metrics
+    prometheus.io/port: trial
 spec:
   replicas: 3
   selector:
@@ -25,7 +28,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: trial-service
+  name: trial
+  labels:
+    app: trial
 spec:
   selector:
     app: trial
@@ -38,9 +43,15 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
+  annotations:
+    sidecar.jaegertracing.io/inject: "true"
+    prometheus.io/scrape: "true"
+    prometheus.io/path: /metrics
+    prometheus.io/port: trial
   name: trial
   namespace: monitoring
   labels:
+    name: trial
     app: trial
     release: prometheus
 spec:
