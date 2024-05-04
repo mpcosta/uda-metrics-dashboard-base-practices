@@ -1,0 +1,12 @@
+apiVersion: jaegertracing.io/v1
+kind: Jaeger
+metadata:
+  name: my-jaeger
+  namespace: observability
+spec:
+  strategy: allInOne  # This deploys all components in a single pod, suitable for dev environments
+  allInOne:
+    options:
+      log-level: info
+  storage:
+    type: memory  # This specifies in-memory storage, note that this is not suitable for production

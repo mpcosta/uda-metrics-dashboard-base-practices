@@ -54,38 +54,57 @@ Create a dashboard that show these values over a 24 hour period and take a scree
 ![SLIDashboard](answer-img/SLI-Dashboard.png)
 
 ## Tracing our Flask App
-*TODO:*  We will create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here. Also provide a (screenshot) sample Python file containing a trace and span code used to perform Jaeger traces on the backend service.
-MARCO TODO: Check if we need to have image of our own app in Docker for this task. Will probably need to change at least the backend app python file to include the trace and span code.
+*TODO:*  We will create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here. 
+Also provide a (screenshot) sample Python file containing a trace and span code used to perform Jaeger traces on the backend service.
+
+![JaegerSpan](answer-img/jaeger-span.png)
+![SampleSpanCode](answer-img/SampleSpanCode.png)
 
 ## Jaeger in Dashboards
 *TODO:* Now that the trace is running, let's add the metric to our current Grafana dashboard. Once this is completed, provide a screenshot of it here.
 
+![JaegerGrafana](answer-img/jaeger-grafana.png)
 
 ## Report Error
 *TODO:* Using the template below, write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue also include a screenshot of the tracer span to demonstrate how we can user a tracer to locate errors easily.
 
 TROUBLE TICKET
 
-Name:
+Name: Marco Costa
+Date: 03/05/2024 19:18:55 PM BST
 
-Date:
+Subject: Backend Service with a High Error rate and Latency
 
-Subject:
+Affected Area: API endpoint requests
 
-Affected Area:
+Severity: High
 
-Severity:
-
-Description:
+Description: There is an internal server error coming from the /api endpoint. The error rate is high, and the latency is also high. The file causing the issue is `app.py`. Please investigate and resolve the issue as soon as possible.
+![tracer](answer-img/span-error-report.png)
 
 
 ## Creating SLIs and SLOs
 *TODO:* We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name four SLIs that you would use to measure the success of this SLO.
 
+SLO: 99.95% uptime per month
+
+SLIs to measure the success of the SLO:
+1. **Uptime**: Up percentage of time the service is available over a month which should be 99.95%.
+2. **Latency**: The time taken to respond to a request making sure its consistent and within the acceptable range.
+3. **Error Rate**: The percentage of failed requests over the total number of requests. (e.g. More than 0.05% error rate is unacceptable
+4. **Throughput**: The number of requests the service can handle per second, ensuring resources are not overwhelmed.
+
 
 ## Building KPIs for our plan
 *TODO*: Now that we have our SLIs and SLOs, create a list of 2-3 KPIs to accurately measure these metrics as well as a description of why those KPIs were chosen. We will make a dashboard for this, but first write them down here.
 
+1. Availability KPI: 
+   - This KPI will measure the uptime of the service over a month to ensure it meets the SLO of 99.95%.
+   - This was chosen because it is the most important KPI to measure the success of the SLO.
+
+2. Error Rate  KPI:
+   - This KPI will calculate the percentage of failed requests over the total number of requests to ensure it is below the acceptable threshold.
+   - This was chosen because it is important to measure the number of failed requests to ensure the service is reliable.
 
 ## Final Dashboard
 *TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.  

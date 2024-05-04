@@ -24,7 +24,10 @@ def init_tracer():
         config={
             "sampler": {"type": "const", "param": 1},
             "logging": True,
-            "local_agent": {"reporting_host": "jaeger-operator-metrics.observability.svc.cluster.local"},
+            "local_agent": {
+                "reporting_host": "my-jaeger-agent.observability.svc.cluster.local",
+                "reporting_port": 6831
+            },
         },
         service_name="backend",
     )
@@ -36,7 +39,7 @@ tracer = FlaskTracer(jaeger_tracer, True, app)
 
 @app.route("/")
 def homepage():
-    with opentracing.tracer.start_span("home-route") as span:
+    with tracer.start_span("home-route") as span:
         response = {"message": "Home Endpoint"}
         span.set_tag("message", response)
         return jsonify(response)
@@ -44,7 +47,7 @@ def homepage():
 
 @app.route("/api")
 def my_api():
-    with opentracing.tracer.start_span("api-route") as span:
+    with tracer.start_span("api-route") as span:
             response = {"message": "API Endpoint"}
             span.set_tag("message", response)
             return jsonify(response)
@@ -52,7 +55,7 @@ def my_api():
 
 @app.route("/star", methods=["POST"])
 def add_star():
-    with opentracing.tracer.start_span("star-route") as span:
+    with tracer.start_span("star-route") as span:
         try:
             star = mongo.db.stars
             name = request.json["name"]

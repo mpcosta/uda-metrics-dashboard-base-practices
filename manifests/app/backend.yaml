@@ -22,7 +22,7 @@ spec:
       containers:
       - env:
           - name: JAEGER_HOST
-            value: jaeger-operator-metrics.observability.svc.cluster.local
+            value: my-jaeger-agent.observability.svc.cluster.local
         name: backend
         image: mppcosta/uda-metrics-backend:latest
         imagePullPolicy: Always
