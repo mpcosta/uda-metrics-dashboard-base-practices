@@ -109,4 +109,11 @@ SLIs to measure the success of the SLO:
 ## Final Dashboard
 *TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.  
 
-![FinalDashboard](answer-img/SLI-Dashboard.png)
+![FinalDashboard](answer-img/final-dashboard.png)
+
+The dashboard displayed in the image includes several graphs and metrics to monitor different aspects of service performance:
+
+1. Tracing and CPU/Memory Usage: The top section displays trace logs with details such as trace ID, name, start time, and duration, alongside graphs showing CPU usage and memory usage for both frontend and backend services.
+2. Service Uptime and Error Rate: Below, there are uptime metrics for backend, frontend, and trial services, all showing 100% uptime. There are also circular gauges indicating the error rate per minute, with the backend at 100% success rate and the frontend at 36.6%.
+3. Response Times and Throughput: The lower section includes a graph tracking frontend and backend response times, and another graph displaying throughput in requests per second, showing variability over time.
+
